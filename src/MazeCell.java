@@ -18,7 +18,6 @@ public class MazeCell {
         this.explored = false;
         this.parent = null;
     }
-
     /** Getters and Setters **/
     public boolean isExplored() {
         return this.explored;

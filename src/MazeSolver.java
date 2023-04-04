@@ -122,7 +122,6 @@ public class MazeSolver {
 
         return BFSHelper(BFS.remove());
     }
-
     public static void main(String[] args) {
         // Create the Maze to be solved
         Maze maze = new Maze("Resources/maze3.txt");

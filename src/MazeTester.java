@@ -15,7 +15,6 @@ public class MazeTester {
     public static void testGetSolution() {
         // Read in a new maze
         Maze maze = new Maze("Resources/mazeGetSolutionTester.txt");
-
         // Create our expected solution
         ArrayList<MazeCell> expected = new ArrayList<MazeCell>();
         expected.add(maze.getCell(5, 0));
