@@ -3,6 +3,9 @@
  * @author Ms. Namasivayam
  * @version 03/10/2023
  */
+//Eric Feng
+// CS2
+// 3/31/23
 
 public class MazeCell {
     private boolean explored;

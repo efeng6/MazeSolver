@@ -31,12 +31,15 @@ public class MazeSolver {
      * the parents to determine the solution
      * @return An arraylist of MazeCells to visit in order
      */
+
     public ArrayList<MazeCell> getSolution() {
+        //Makes arraylist and passes into recursive helper for first case
         ArrayList<MazeCell> arr = new ArrayList<MazeCell>();
         checkParent(maze.getEndCell(), arr);
         return arr;
     }
 
+    //helper bubbles down, recursively adds parents to arraylist in correct order
     public void checkParent(MazeCell cell, ArrayList<MazeCell> arr){
         if (cell.equals(maze.getStartCell())) {
             arr.add(cell);
@@ -50,17 +53,23 @@ public class MazeSolver {
      * Performs a Depth-First Search to solve the Maze
      * @return An ArrayList of MazeCells in order from the start to end cell
      */
+    //Just calls helper with first cell
     public ArrayList<MazeCell> solveMazeDFS() {
         return DFSHelper(maze.getStartCell());
     }
 
     public ArrayList<MazeCell> DFSHelper(MazeCell m) {
+        //base case at end of maze
         if(m.equals(maze.getEndCell())){
             return this.getSolution();
         }
+        //Checks and adds in NESW order, if adjacent is valid
         if(m.getRow()-1 >= 0 &&maze.isValidCell(m.getRow()-1,m.getCol())){
+            //Adds adjacent to stack of cells to visit
             DFS.push(maze.getCell(m.getRow()-1,m.getCol()));
+            //Sets the adjacent as parent
             maze.getCell(m.getRow()-1,m.getCol()).setParent(m);
+            //Sets adjacent explored value to true
             maze.getCell(m.getRow()-1,m.getCol()).setExplored(true);
         }
         if(m.getCol()+1 < maze.getNumCols() && maze.isValidCell(m.getRow(),m.getCol()+1)){
@@ -78,7 +87,7 @@ public class MazeSolver {
             maze.getCell(m.getRow(),m.getCol()-1).setParent(m);
             maze.getCell(m.getRow(),m.getCol()-1).setExplored(true);
         }
-
+        //takes off top of stack and does again
         return DFSHelper(DFS.pop());
     }
 
@@ -87,17 +96,16 @@ public class MazeSolver {
      * @return An ArrayList of MazeCells in order from the start to end cell
      */
 
+    //Just calls helper with first cell
     public ArrayList<MazeCell> solveMazeBFS() {
         return BFSHelper(maze.getStartCell());
     }
 
+    //Literally the same as DFS but with a queue instead of a stack
     public ArrayList<MazeCell> BFSHelper(MazeCell m) {
         if(m.equals(maze.getEndCell())){
             return this.getSolution();
         }
-
-
-
 
         if(m.getRow()-1 >= 0 &&maze.isValidCell(m.getRow()-1,m.getCol())){
             BFS.add(maze.getCell(m.getRow()-1,m.getCol()));
